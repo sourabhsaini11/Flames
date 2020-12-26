@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 
 const Game = ({ name, released, image, id }) => {
-
+  const stringId = id.toString();
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
     document.body.style.overflow = 'hidden';
@@ -18,11 +18,11 @@ const Game = ({ name, released, image, id }) => {
   }
 
   return (
-    <StyledGame onClick={loadDetailHandler}>
+    <StyledGame layoutId={stringId} onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
-      <h3>{name}</h3>
+      <motion.h3 layoutId={`title ${stringId}`}>{name}</motion.h3>
       <p>{released}</p>
-      <img src={image} alt={name} />
+      <motion.img layoutId={`image ${stringId}`} src={image} alt={name} />
       </Link>
     </StyledGame>
   );
